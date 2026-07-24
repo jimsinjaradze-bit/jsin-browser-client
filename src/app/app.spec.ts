@@ -14,10 +14,18 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render the headline', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, jsin-browser-client');
+    expect(compiled.querySelector('.headline')?.textContent).toContain('one thing');
+  });
+
+  it('should list the Gabby project', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const gabby = compiled.querySelector('a.project[href="https://gabby.jsin.io/"]');
+    expect(gabby?.textContent).toContain('Gabby');
   });
 });

@@ -1,0 +1,297 @@
+:host {
+  /* Deep cool graphite — not pure black */
+  --bg: #0d1013;
+  --bg-lift: #14181c;
+  --surface: #161b20;
+  --hairline: #262d34;
+  --hairline-strong: #333c45;
+
+  /* Warm off-white ink to pair with brass */
+  --ink: #e9e6df;
+  --muted: #9aa2ab;
+  --faint: #626b74;
+
+  /* The one bold color: warm brass / standby amber (not neon) */
+  --amber: #e2a63f;
+  --amber-bright: #ffc46b;
+  --amber-dim: #7a5f2e;
+  --amber-glow: rgba(226, 166, 63, 0.55);
+
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco,
+    "Cascadia Code", "Roboto Mono", Consolas, monospace;
+
+  display: block;
+  color: var(--ink);
+}
+
+.panel {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  padding: clamp(3rem, 9vw, 6.5rem) 1.5rem clamp(3rem, 6vw, 5rem);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Ambient light cast by the standby lamp, top-left */
+.panel::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 45rem;
+  height: 45rem;
+  background: radial-gradient(
+    circle,
+    rgba(226, 166, 63, 0.09) 0%,
+    rgba(226, 166, 63, 0.03) 35%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.wrap {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  max-width: 39rem;
+}
+
+/* ---------- Standby LED ---------- */
+.led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--amber);
+  box-shadow: 0 0 8px 1px var(--amber-glow);
+}
+
+.led--off {
+  background: var(--amber-dim);
+  box-shadow: none;
+  opacity: 0.5;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  margin-bottom: 3.75rem;
+}
+
+.headline {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.85rem, 6vw, 3rem);
+  line-height: 1.13;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: var(--ink);
+  overflow-wrap: break-word;
+}
+
+.epigraph {
+  margin: 0 0 1.7rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--amber);
+  font-size: 1.12rem;
+  line-height: 1.55;
+  font-style: italic;
+  color: var(--ink);
+  max-width: 31rem;
+}
+
+.lede {
+  margin: 0 0 1rem;
+  font-size: 1.06rem;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 33rem;
+}
+
+.lede--faint {
+  color: var(--faint);
+  margin-bottom: 0;
+}
+
+/* ---------- Privacy ---------- */
+.policy {
+  margin-bottom: 3.75rem;
+}
+
+.policy-lead {
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.3rem, 3.6vw, 1.7rem);
+  line-height: 1.28;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.policy-note {
+  margin: 0 0 1.15rem;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 32rem;
+}
+
+.policy-why {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.92rem;
+  letter-spacing: 0.01em;
+  color: var(--amber);
+}
+
+/* ---------- Tools rack ---------- */
+.rail-label {
+  margin: 0 0 1rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--faint);
+  font-weight: 400;
+}
+
+.rack {
+  list-style: none;
+  margin: 0 0 3.75rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.unit {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  padding: 1.15rem 1.3rem;
+  border: 1px solid var(--hairline);
+  border-radius: 0.7rem;
+  background: var(--bg-lift);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.22s ease, background 0.22s ease;
+}
+
+.unit .led {
+  align-self: center;
+}
+
+a.unit:hover {
+  border-color: var(--hairline-strong);
+  background: var(--surface);
+}
+
+a.unit:hover .led {
+  background: var(--amber-bright);
+  box-shadow: 0 0 14px 3px var(--amber-glow);
+}
+
+.unit-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.unit-name {
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.unit-fn {
+  font-size: 0.94rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.unit-state {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.state--hover {
+  display: none;
+  color: var(--amber);
+}
+
+a.unit:hover .state--rest { display: none; }
+a.unit:hover .state--hover { display: inline; }
+
+/* Empty slot */
+.unit--empty {
+  border-style: dashed;
+  background: transparent;
+}
+
+.unit--empty .unit-name,
+.unit--empty .unit-fn {
+  color: var(--faint);
+}
+
+/* ---------- Footer ---------- */
+.foot {
+  border-top: 1px solid var(--hairline);
+  padding-top: 2.25rem;
+}
+
+.foot-note {
+  margin: 0 0 1.4rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.coffee {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--amber);
+  text-decoration: none;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid var(--amber-dim);
+  border-radius: 0.6rem;
+  background: transparent;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.coffee-mark {
+  font-family: initial;
+}
+
+.coffee:hover {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #17130a;
+}
+
+.colophon {
+  margin: 2.1rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+}
+
+/* ---------- Focus + motion a11y ---------- */
+a:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 460px) {
+  .unit { padding: 1rem 1.05rem; gap: 0.8rem; }
+}

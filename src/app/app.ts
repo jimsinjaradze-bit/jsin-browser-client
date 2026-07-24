@@ -1,12 +1,28 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+
+export interface Project {
+  name: string;
+  tagline: string;
+  url: string;
+}
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('jsin-browser-client');
+  protected readonly brand = 'jsin.io';
+
+  // Add a new tool by dropping one object in here — the template renders the rest.
+  protected readonly projects = signal<Project[]>([
+    {
+      name: 'Gabby',
+      tagline: 'Send someone a file. That’s the whole thing.',
+      url: 'https://gabby.jsin.io/',
+    },
+  ]);
+
+  protected readonly paypalUrl = 'https://paypal.me/JimsherSinjaradze';
 }
