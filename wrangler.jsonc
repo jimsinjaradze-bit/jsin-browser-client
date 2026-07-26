@@ -1,5 +1,5 @@
 {
-  "name": "gabby-browser-client",
+  "name": "jsin-browser-client",
   "compatibility_date": "2026-07-01",
   "assets": {
     "directory": "./dist/jsin-browser-client/browser",
